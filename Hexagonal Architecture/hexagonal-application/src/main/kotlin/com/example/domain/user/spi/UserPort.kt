@@ -1,7 +1,6 @@
 package com.example.domain.user.spi
 
-import com.example.user.model.User
-import org.springframework.stereotype.Component
+import com.example.domain.user.model.User
 
 interface UserPort {
     fun saveUser(user: User)

@@ -1,6 +1,9 @@
-package com.example.user.model
+package com.example.domain.user.model
+
+import com.example.global.annotation.Aggregate
 
 
+@Aggregate
 data class User(
     val id: Long?,
     val accountId: String,
