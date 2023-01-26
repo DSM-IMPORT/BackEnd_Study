@@ -5,7 +5,6 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import org.jetbrains.annotations.NotNull
 
 @Entity
 class UserJpaEntity(
@@ -13,15 +12,15 @@ class UserJpaEntity(
     @Column(name = "user_id")
     val id:Long?,
 
-    @NotNull
+    @Column(nullable = false)
     val accountId:String,
 
-    @NotNull
+    @Column(nullable = false)
     val password:String,
 
-    @NotNull
+    @Column(nullable = false)
     val name:String,
 
-    @NotNull
+    @Column(nullable = false)
     val age:Int
 )
