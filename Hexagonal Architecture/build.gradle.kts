@@ -8,6 +8,10 @@ subprojects {
         plugin("org.jetbrains.kotlin.jvm")
         version = "1.6.21"
     }
+    apply {
+        plugin("org.jetbrains.kotlin.kapt")
+        version = "1.7.10"
+    }
 
     repositories {
         mavenCentral()
