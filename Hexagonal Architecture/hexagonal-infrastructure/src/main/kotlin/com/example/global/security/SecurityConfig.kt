@@ -1,5 +1,7 @@
 package com.example.global.security
 
+import com.example.global.filter.FilterConfig
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -9,7 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-class SecurityConfig {
+class SecurityConfig(
+    private val objectMapper: ObjectMapper
+) {
 
     @Bean
     @Throws(Exception::class)
@@ -25,6 +29,8 @@ class SecurityConfig {
 
             .authorizeRequests()
             .antMatchers("*").permitAll()
+
+            .and().apply(FilterConfig(objectMapper))
 
         return http.build()
     }
