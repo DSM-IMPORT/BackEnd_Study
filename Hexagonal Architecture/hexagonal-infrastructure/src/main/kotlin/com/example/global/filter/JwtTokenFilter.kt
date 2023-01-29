@@ -1,8 +1,7 @@
 package com.example.global.filter
 
-import com.example.global.security.token.JwtProperties
 import com.example.global.security.token.JwtTokenParser
-import org.springframework.security.core.Authentication
+import com.example.global.security.token.JwtTokenResolver
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JwtTokenFilter(
+    private val jwtTokenResolver: JwtTokenResolver,
     private val jwtTokenParser: JwtTokenParser
 ) : OncePerRequestFilter() {
     override fun doFilterInternal(
@@ -17,22 +17,12 @@ class JwtTokenFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val token = resolvedToken(request)
+        val token = jwtTokenResolver.resolveToken(request)
 
         token?.run {
             SecurityContextHolder.getContext().authentication = jwtTokenParser.getAuthentication(token)
         }
 
         filterChain.doFilter(request, response)
-    }
-
-    private fun resolvedToken(request: HttpServletRequest): String? {
-        val bearerToken = request.getHeader("Authorization")
-
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7)
-        }
-
-        return null
     }
 }

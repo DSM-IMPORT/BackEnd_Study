@@ -4,9 +4,7 @@ import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 
 @Component
-class JwtTokenResolver(
-    private val jwtProperties: JwtProperties
-) {
+class JwtTokenResolver {
     fun resolveToken(httpServletRequest: HttpServletRequest): String? {
         val bearerToken: String? = httpServletRequest.getHeader("Authorization")
 
