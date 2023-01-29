@@ -1,6 +1,7 @@
 package com.example.global.security
 
 import com.example.global.filter.FilterConfig
+import com.example.global.security.token.JwtTokenParser
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,8 @@ import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 class SecurityConfig(
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
+    private val jwtTokenParser: JwtTokenParser
 ) {
 
     @Bean
@@ -30,7 +32,7 @@ class SecurityConfig(
             .authorizeRequests()
             .antMatchers("*").permitAll()
 
-            .and().apply(FilterConfig(objectMapper))
+            .and().apply(FilterConfig(objectMapper,jwtTokenParser))
 
         return http.build()
     }

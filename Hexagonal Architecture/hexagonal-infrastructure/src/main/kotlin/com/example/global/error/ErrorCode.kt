@@ -5,6 +5,8 @@ enum class ErrorCode(
     val message: String
 ): ErrorProperty {
     BAD_REQUEST(400, "Bad Request"),
+    INVALID_TOKEN(401, "Invalid Token"),
+    EXPIRED_TOKEN(401, "Expired Token"),
     INTERNEL_SERVER_ERROR(500, "Internel Server Error");
 
     override fun status(): Int = status

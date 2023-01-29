@@ -13,6 +13,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.jsonwebtoken:jjwt:0.9.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor")
     runtimeOnly("com.mysql:mysql-connector-j")
 }
 
