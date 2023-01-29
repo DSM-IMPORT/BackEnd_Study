@@ -12,13 +12,19 @@ class GenerateJwtAdapter(
     private val securityProperties: SecurityProperties,
     private val refreshTokenRepository: RefreshTokenRepository
 ) : JwtPort{
+
+    companion object {
+        private const val REFRESH_KEY = "refresh"
+        private const val ACCESS_KEY = "access"
+    }
+
     override fun receiveToken(accountId: String) = TokenResponse(
-        accessToken = generateToken(accountId, securityProperties.accessExp),
+        accessToken = generateToken(accountId, securityProperties.accessExp, ACCESS_KEY),
         refreshToken = generateRefreshToken(accountId)
     )
 
     fun generateRefreshToken(accountId: String): String {
-        val newRefreshToken: String = generateToken(accountId, securityProperties.refreshExp)
+        val newRefreshToken: String = generateToken(accountId, securityProperties.refreshExp, REFRESH_KEY)
         refreshTokenRepository.save(
             RefreshTokenEntity(
                 accountId = accountId,
@@ -28,11 +34,11 @@ class GenerateJwtAdapter(
         return newRefreshToken
     }
 
-    private fun generateToken(accountId: String, expiration: Long): String {
+    private fun generateToken(accountId: String, expiration: Long, type: String): String {
         return "Bearer " + Jwts.builder()
             .signWith(SignatureAlgorithm.HS256, securityProperties.secretKey)
             .setSubject(accountId)
-            .setHeaderParam("type", JwtProperties.ACCESS_KEY)
+            .setHeaderParam("type", type)
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + expiration * 1000))
             .compact()
