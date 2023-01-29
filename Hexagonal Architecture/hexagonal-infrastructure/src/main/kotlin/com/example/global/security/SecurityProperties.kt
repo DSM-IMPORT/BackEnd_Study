@@ -4,14 +4,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import java.util.*
 
-@ConfigurationProperties(prefix = "jwt")
+@ConfigurationProperties(prefix = "spring.jwt")
 @ConstructorBinding
 class SecurityProperties(
     accessExp: Long,
     refreshExp: Long,
-    secretKey: String
+    secret: String
 ) {
     val accessExp = accessExp * 1000
     val refreshExp = refreshExp * 1000
-    val secretKey = Base64.getEncoder().encodeToString(secretKey.toByteArray())!!
+    val secretKey = Base64.getEncoder().encodeToString(secret.toByteArray())
 }
