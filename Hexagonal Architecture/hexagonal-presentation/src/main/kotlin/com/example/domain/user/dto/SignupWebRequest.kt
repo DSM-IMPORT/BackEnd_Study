@@ -1,13 +1,13 @@
 package com.example.domain.user.dto
 
 import com.example.global.regex.PasswordRegexp
-import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 
 data class SignupWebRequest(
+
     @field:NotBlank
     @field:Size(min = 10, max = 20, message = "account_id는 최대 20자입니다.")
     val accountId: String,
