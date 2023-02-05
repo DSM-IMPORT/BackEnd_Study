@@ -15,4 +15,16 @@ class UserMapper {
             age = user.age
         )
     }
+
+    fun toDomain(userJpaEntity: UserJpaEntity?): User? {
+        return userJpaEntity?.let {
+            User(
+                id = it.id!!,
+                accountId = it.accountId,
+                name = it.name,
+                age = it.age,
+                password = it.password
+            )
+        }
+    }
 }
