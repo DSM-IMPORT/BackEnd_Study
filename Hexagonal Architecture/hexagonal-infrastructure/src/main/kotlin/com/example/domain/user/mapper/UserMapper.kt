@@ -6,13 +6,15 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserMapper {
+
     fun toEntity(user: User): UserJpaEntity {
+
         return UserJpaEntity(
-            id = user.id,
-            accountId = user.accountId,
-            password = user.password,
-            name = user.name,
-            age = user.age
+            user.id,
+            user.accountId,
+            user.password,
+            user.name,
+            user.age
         )
     }
 }
