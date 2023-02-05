@@ -1,9 +1,9 @@
-package com.example.global.Exception
+package com.example.global.exception
 
 import com.example.global.error.CustomException
-import com.example.global.error.ErrorCode
+import com.example.global.error.GlobalErrorCode
 
-class InvalidTokenException : CustomException(ErrorCode.INVALID_TOKEN) {
+class InvalidTokenException : CustomException(GlobalErrorCode.INVALID_TOKEN) {
     companion object {
         @JvmField
         val EXCEPTION = InvalidTokenException()
