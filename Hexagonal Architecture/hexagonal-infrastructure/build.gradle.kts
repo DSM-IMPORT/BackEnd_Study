@@ -19,9 +19,9 @@ dependencies {
 }
 
 allOpen {
-    annotation("jakarta.persistence.Entity")
+    annotation("javax.persistence.Entity")
 }
 
 noArg {
-    annotation("jakarta.persistence.Entity")
+    annotation("javax.persistence.Entity")
 }

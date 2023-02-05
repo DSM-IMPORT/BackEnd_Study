@@ -5,7 +5,7 @@ import com.example.domain.user.dto.request.SignupRequest
 import com.example.domain.user.dto.response.QueryUserMyInfoResponse
 import com.example.domain.user.usecase.QueryMyInfoUseCase
 import com.example.domain.user.usecase.SignupUseCase
-import jakarta.validation.Valid
+import javax.validation.Valid
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
