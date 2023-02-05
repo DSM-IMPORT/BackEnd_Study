@@ -6,8 +6,10 @@ import com.example.global.persistence.auth.entity.RefreshTokenEntity
 import com.example.global.persistence.auth.repository.RefreshTokenRepository
 import com.example.global.config.security.jwt.dotenv.JwtProperties
 import io.jsonwebtoken.*
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class GenerateJwtAdapter(
     private val jwtProperties: JwtProperties,
     private val refreshTokenRepository: RefreshTokenRepository
@@ -15,8 +17,8 @@ class GenerateJwtAdapter(
 
 
     override fun receiveToken(accountId: String) = TokenResponse(
-        accessToken = generateToken(accountId),
-        refreshToken = generateRefreshToken(accountId)
+        generateToken(accountId),
+        generateRefreshToken(accountId)
     )
 
     private fun generateRefreshToken(accountId: String): String {
