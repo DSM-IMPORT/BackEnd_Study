@@ -1,7 +1,7 @@
-package com.example.global.filter
+package com.example.global.config.filter
 
-import com.example.global.security.token.JwtTokenParser
-import com.example.global.security.token.JwtTokenResolver
+import com.example.global.config.security.jwt.JwtTokenParser
+import com.example.global.config.security.jwt.JwtTokenResolver
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -13,6 +13,7 @@ class FilterConfig(
     private val jwtTokenParser: JwtTokenParser,
     private val jwtTokenResolver: JwtTokenResolver
 ) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
+
     override fun configure(builder: HttpSecurity) {
         builder.addFilterBefore(JwtTokenFilter(jwtTokenResolver, jwtTokenParser), UsernamePasswordAuthenticationFilter::class.java)
         builder.addFilterBefore(ExceptionFilter(objectMapper), JwtTokenFilter::class.java)

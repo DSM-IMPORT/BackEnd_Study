@@ -1,7 +1,7 @@
-package com.example.global.filter
+package com.example.global.config.filter
 
-import com.example.global.security.token.JwtTokenParser
-import com.example.global.security.token.JwtTokenResolver
+import com.example.global.config.security.jwt.JwtTokenParser
+import com.example.global.config.security.jwt.JwtTokenResolver
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
@@ -17,11 +17,11 @@ class JwtTokenFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val token = jwtTokenResolver.resolveToken(request)
 
-        token?.run {
-            SecurityContextHolder.getContext().authentication = jwtTokenParser.getAuthentication(token)
-        }
+        jwtTokenResolver.resolveToken(request)
+            ?.run {
+                SecurityContextHolder.getContext().authentication = jwtTokenParser.getAuthentication(this)
+            }
 
         filterChain.doFilter(request, response)
     }
