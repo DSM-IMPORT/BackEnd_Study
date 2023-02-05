@@ -1,9 +1,9 @@
-package com.example.global.Exception
+package com.example.global.exception
 
 import com.example.global.error.CustomException
-import com.example.global.error.ErrorCode
+import com.example.global.error.GlobalErrorCode
 
-class InternalServerErrorException(): CustomException(ErrorCode.INTERNEL_SERVER_ERROR) {
+class InternalServerErrorException(): CustomException(GlobalErrorCode.INTERNAL_SERVER_GLOBAL_ERROR) {
     companion object {
         @JvmField
         val EXCEPTION = InternalServerErrorException()
