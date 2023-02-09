@@ -1,6 +1,6 @@
 package com.example.domain.user.usecase
 
-import com.example.domain.user.dto.SignupRequest
+import com.example.domain.user.dto.request.SignupRequest
 import com.example.domain.user.model.User
 import com.example.domain.user.spi.UserPort
 import com.example.global.annotation.UseCase

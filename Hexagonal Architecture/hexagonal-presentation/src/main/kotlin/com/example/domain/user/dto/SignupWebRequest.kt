@@ -1,6 +1,7 @@
 package com.example.domain.user.dto
 
 import com.example.global.regex.PasswordRegexp
+import javax.validation.constraints.Max
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern

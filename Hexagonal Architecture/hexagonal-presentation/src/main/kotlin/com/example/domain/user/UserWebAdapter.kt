@@ -11,13 +11,18 @@ import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
+import com.example.domain.user.dto.response.QueryUserMyInfoResponse
+import com.example.domain.user.usecase.QueryMyInfoUseCase
 
 @Validated
 @RestController
 @RequestMapping("/users")
 class UserWebAdapter(
     private val signupUseCase: SignupUseCase,
+
     private val loginUseCase: LoginUseCase
+    
+    private val queryMyInfoUseCase: QueryMyInfoUseCase
 ) {
 
     @PostMapping("/auth")
@@ -48,5 +53,10 @@ class UserWebAdapter(
                 req.password
             )
         )
+    }
+
+    @GetMapping("/my")
+    fun myPage(): QueryUserMyInfoResponse {
+        return queryMyInfoUseCase.execute()
     }
 }

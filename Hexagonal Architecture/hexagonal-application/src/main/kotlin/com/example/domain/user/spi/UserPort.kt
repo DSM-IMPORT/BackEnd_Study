@@ -8,4 +8,7 @@ interface UserPort {
     fun saveUser(user: User)
 
     fun verifyUser(loginRequest: LoginRequest): String
+
+    fun findByAccountId(accountId: String): User?
+
 }

@@ -1,4 +1,4 @@
-package com.example.domain.user.dto
+package com.example.domain.user.dto.request
 
 data class SignupRequest(
     val accountId: String,
