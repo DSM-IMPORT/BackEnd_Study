@@ -3,8 +3,8 @@ package com.example.domain.user
 import com.example.domain.auth.dto.response.TokenResponse
 import com.example.domain.user.dto.LoginRequest
 import com.example.domain.user.dto.LoginWebRequest
-import com.example.domain.user.dto.SignupRequest
 import com.example.domain.user.dto.SignupWebRequest
+import com.example.domain.user.dto.request.SignupRequest
 import com.example.domain.user.usecase.LoginUseCase
 import com.example.domain.user.usecase.SignupUseCase
 import org.springframework.http.HttpStatus
@@ -20,7 +20,7 @@ import com.example.domain.user.usecase.QueryMyInfoUseCase
 class UserWebAdapter(
     private val signupUseCase: SignupUseCase,
 
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
     
     private val queryMyInfoUseCase: QueryMyInfoUseCase
 ) {

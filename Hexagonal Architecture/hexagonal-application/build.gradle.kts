@@ -11,7 +11,3 @@ dependencies {
 allOpen {
     annotation("com.example.global.annotation.UseCase")
 }
-
-tasks.getByName<Jar>("bootJar") {
-    enabled = false
-}
