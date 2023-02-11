@@ -1,6 +1,6 @@
 package com.example.domain.user.spi
 
-import com.example.domain.user.dto.LoginRequest
+import com.example.domain.user.dto.request.LoginRequest
 import com.example.domain.user.model.User
 
 interface UserPort {
