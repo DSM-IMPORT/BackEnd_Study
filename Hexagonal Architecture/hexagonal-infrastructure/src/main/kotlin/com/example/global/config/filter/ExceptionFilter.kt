@@ -1,9 +1,9 @@
-package com.example.global.filter
+package com.example.global.config.filter
 
-import com.example.global.Exception.InternalServerErrorException
 import com.example.global.error.CustomException
 import com.example.global.error.ErrorProperty
 import com.example.global.error.ErrorResponse
+import com.example.global.exception.InternalServerErrorException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
@@ -25,7 +25,7 @@ class ExceptionFilter(
     ) {
         try {
             filterChain.doFilter(request, response)
-        } catch (e: Exception) {
+        } catch(e: Exception) {
             e.printStackTrace()
             when (e) {
                 is CustomException -> sendErrorMessage(response, e.errorProperty)

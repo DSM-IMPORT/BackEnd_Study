@@ -6,21 +6,28 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-@Entity
+@Entity(name = "user")
 class UserJpaEntity(
+    id: Long?,
+    accountId: String,
+    password: String,
+    name: String,
+    age: Int
+){
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    val id:Long?,
+    val id: Long? = id
 
-    @Column(nullable = false)
-    val accountId:String,
 
-    @Column(nullable = false)
-    val password:String,
+    @Column(nullable = false, length = 20, unique = true)
+    val accountId: String = accountId
 
-    @Column(nullable = false)
-    val name:String,
+    @Column(nullable = false, length = 60)
+    val password: String = password
 
-    @Column(nullable = false)
-    val age:Int
-)
+    @Column(nullable = false, length = 5)
+    val name: String = name
+
+    @Column(nullable = false, scale = 150)
+    val age: Int = age
+}

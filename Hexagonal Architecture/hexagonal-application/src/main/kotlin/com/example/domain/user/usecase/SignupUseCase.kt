@@ -12,11 +12,11 @@ class SignupUseCase(
 
     fun execute(signupRequest: SignupRequest) {
         val user = User(
-            id = null,
-            accountId = signupRequest.accountId,
-            password = signupRequest.password+"*%@#$%@",
-            name = signupRequest.name,
-            age = signupRequest.age
+            null,
+            signupRequest.accountId,
+            signupRequest.password,
+            signupRequest.name,
+            signupRequest.age
         )
         userPort.saveUser(user)
     }

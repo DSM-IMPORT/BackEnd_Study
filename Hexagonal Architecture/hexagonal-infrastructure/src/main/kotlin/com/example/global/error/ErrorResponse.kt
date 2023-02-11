@@ -21,7 +21,7 @@ data class ErrorResponse(
             }
 
             return BindErrorResponse(
-                status = ErrorCode.BAD_REQUEST.status(),
+                status = GlobalErrorCode.BAD_REQUEST.status(),
                 fieldError = listOf(errorMap)
             )
         }

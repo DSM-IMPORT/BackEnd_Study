@@ -1,10 +1,10 @@
-package com.example.global.security.token
+package com.example.global.config.security.jwt
 
-import com.example.global.Exception.ExpiredTokenException
-import com.example.global.Exception.InternalServerErrorException
-import com.example.global.Exception.InvalidTokenException
-import com.example.global.security.SecurityProperties
-import com.example.global.security.principle.AuthDetailsService
+import com.example.global.exception.ExpiredTokenException
+import com.example.global.exception.InternalServerErrorException
+import com.example.global.exception.InvalidTokenException
+import com.example.global.config.security.jwt.dotenv.JwtProperties
+import com.example.global.config.security.principle.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.InvalidClaimException
@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class JwtTokenParser(
-    private val securityProperties: SecurityProperties,
+    private val jwtProperties: JwtProperties,
     private val authDetailsService: AuthDetailsService
 ) {
 
     private fun getClaims(token: String): Claims {
         return try {
             Jwts.parser()
-                .setSigningKey(securityProperties.secretKey)
+                .setSigningKey(jwtProperties.secretKey)
                 .parseClaimsJws(token).body
         } catch (e: Exception) {
             when (e) {

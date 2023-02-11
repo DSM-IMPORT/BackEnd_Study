@@ -1,15 +1,14 @@
-package com.example.global.security
+package com.example.global.config.security
 
-import com.example.global.filter.FilterConfig
-import com.example.global.security.token.JwtTokenParser
-import com.example.global.security.token.JwtTokenResolver
+import com.example.global.config.filter.FilterConfig
+import com.example.global.config.security.jwt.JwtTokenParser
+import com.example.global.config.security.jwt.JwtTokenResolver
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
@@ -21,8 +20,8 @@ class SecurityConfig(
 
     @Bean
     @Throws(Exception::class)
-    protected fun filterchain(http: HttpSecurity): SecurityFilterChain {
-        http
+    protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        return http
             .csrf().disable()
             .formLogin().disable()
             .cors().and()
@@ -36,9 +35,9 @@ class SecurityConfig(
 
             .and().apply(FilterConfig(objectMapper,jwtTokenParser, jwtTokenResolver))
 
-        return http.build()
+            .and().build()
     }
 
     @Bean
-    fun passwordEncorder(): PasswordEncoder = BCryptPasswordEncoder()
+    fun passwordEncoder() = BCryptPasswordEncoder()
 }
