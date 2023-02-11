@@ -5,4 +5,6 @@ import com.example.domain.auth.dto.response.TokenResponse
 interface UserJwtPort {
 
     fun receiveToken(accountId: String): TokenResponse
+
+    fun reissue(rfToken: String): TokenResponse
 }

@@ -1,18 +1,19 @@
 package com.example.domain.user
 
-import com.example.domain.auth.dto.response.TokenResponse
-import com.example.domain.user.dto.LoginRequest
 import com.example.domain.user.dto.LoginWebRequest
+import com.example.domain.user.dto.ReissueWebRequest
 import com.example.domain.user.dto.SignupWebRequest
+import com.example.domain.user.dto.request.LoginRequest
+import com.example.domain.user.dto.request.ReissueRequest
 import com.example.domain.user.dto.request.SignupRequest
 import com.example.domain.user.usecase.LoginUseCase
+import com.example.domain.user.usecase.QueryMyInfoUseCase
+import com.example.domain.user.usecase.ReissueUseCase
 import com.example.domain.user.usecase.SignupUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
-import com.example.domain.user.dto.response.QueryUserMyInfoResponse
-import com.example.domain.user.usecase.QueryMyInfoUseCase
 
 @Validated
 @RestController
@@ -22,7 +23,9 @@ class UserWebAdapter(
 
     private val loginUseCase: LoginUseCase,
     
-    private val queryMyInfoUseCase: QueryMyInfoUseCase
+    private val queryMyInfoUseCase: QueryMyInfoUseCase,
+
+    private val reissueUseCase: ReissueUseCase
 ) {
 
     @PostMapping("/auth")
@@ -46,17 +49,24 @@ class UserWebAdapter(
     fun login(
         @RequestBody @Valid
         req: LoginWebRequest
-    ):TokenResponse {
-        return loginUseCase.execute(
-            LoginRequest(
-                req.accountId,
-                req.password
-            )
+    ) = loginUseCase.execute(
+        LoginRequest(
+            req.accountId,
+            req.password
         )
-    }
+    )
+
+    @PostMapping("/reissue")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun reissue(
+        @RequestBody
+        req: ReissueWebRequest
+    ) = reissueUseCase.reissue(
+        ReissueRequest(
+            req.refreshToken
+        )
+    )
 
     @GetMapping("/my")
-    fun myPage(): QueryUserMyInfoResponse {
-        return queryMyInfoUseCase.execute()
-    }
+    fun myPage() = queryMyInfoUseCase.execute()
 }
