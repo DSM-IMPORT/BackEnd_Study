@@ -1,7 +1,7 @@
 package com.example.domain.user.dto
 
+import com.example.global.regex.AccountIdRegexp
 import com.example.global.regex.PasswordRegexp
-import javax.validation.constraints.Max
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
@@ -10,7 +10,7 @@ import javax.validation.constraints.Size
 data class SignupWebRequest(
 
     @field:NotBlank
-    @field:Size(min = 10, max = 20, message = "account_id는 10 ~ 20자입니다.")
+    @field:Pattern(regexp = AccountIdRegexp.REGEX, message = "영문 대소문자, 숫자 10 ~ 20자입니다.")
     val accountId: String,
 
     @field:NotBlank
