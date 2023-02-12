@@ -10,7 +10,7 @@ import javax.validation.constraints.Size
 data class SignupWebRequest(
 
     @field:NotBlank
-    @field:Size(min = 10, max = 20, message = "account_id는 최대 20자입니다.")
+    @field:Size(min = 10, max = 20, message = "account_id는 10 ~ 20자입니다.")
     val accountId: String,
 
     @field:NotBlank
