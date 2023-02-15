@@ -34,9 +34,12 @@ class JwtTokenParser(
     }
 
     fun getAuthentication(token: String): Authentication {
+
         val claims = getClaims(token)
-        val id = claims.subject
-        val authDetails = authDetailsService.loadUserByUsername(id.toString())
+
+        val authDetails = authDetailsService.loadUserByUsername(
+            claims.subject ?: throw InvalidTokenException.EXCEPTION
+        )
 
         return UsernamePasswordAuthenticationToken(authDetails, "", authDetails.authorities)
     }
