@@ -1,4 +1,4 @@
-package com.example.global.config.security.jwt.dotenv
+package com.example.global.config.security.jwt.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

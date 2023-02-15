@@ -3,7 +3,7 @@ package com.example.global.config.security.jwt
 import com.example.global.exception.ExpiredTokenException
 import com.example.global.exception.InternalServerErrorException
 import com.example.global.exception.InvalidTokenException
-import com.example.global.config.security.jwt.dotenv.JwtProperties
+import com.example.global.config.security.jwt.property.JwtProperties
 import com.example.global.config.security.principle.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException

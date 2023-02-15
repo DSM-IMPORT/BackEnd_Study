@@ -1,7 +1,6 @@
 package com.example.global.config.security.jwt
 
-import com.example.global.config.security.jwt.dotenv.JwtProperties
-import io.jsonwebtoken.Jwt
+import com.example.global.config.security.jwt.property.JwtProperties
 import org.springframework.stereotype.Component
 import java.util.regex.Pattern
 import javax.servlet.http.HttpServletRequest
