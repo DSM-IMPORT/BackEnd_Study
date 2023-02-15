@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class SecurityAdapter: UserSecurityPort {
+
     override fun getCurrentUserId(): String {
         return SecurityContextHolder.getContext().authentication.name
     }

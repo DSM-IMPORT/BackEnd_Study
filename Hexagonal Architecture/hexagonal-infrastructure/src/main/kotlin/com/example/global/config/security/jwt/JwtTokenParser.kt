@@ -3,7 +3,7 @@ package com.example.global.config.security.jwt
 import com.example.global.exception.ExpiredTokenException
 import com.example.global.exception.InternalServerErrorException
 import com.example.global.exception.InvalidTokenException
-import com.example.global.config.security.jwt.dotenv.JwtProperties
+import com.example.global.config.security.jwt.property.JwtProperties
 import com.example.global.config.security.principle.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
@@ -34,9 +34,12 @@ class JwtTokenParser(
     }
 
     fun getAuthentication(token: String): Authentication {
+
         val claims = getClaims(token)
-        val id = claims.subject
-        val authDetails = authDetailsService.loadUserByUsername(id.toString())
+
+        val authDetails = authDetailsService.loadUserByUsername(
+            claims.subject ?: throw InvalidTokenException.EXCEPTION
+        )
 
         return UsernamePasswordAuthenticationToken(authDetails, "", authDetails.authorities)
     }

@@ -2,10 +2,11 @@ package com.example.global.config.security.jwt
 
 import com.example.domain.auth.dto.response.TokenResponse
 import com.example.domain.auth.spi.JwtPort
+import com.example.global.config.security.jwt.property.JwtProperties
 import com.example.global.persistence.auth.entity.RefreshTokenEntity
 import com.example.global.persistence.auth.repository.RefreshTokenRepository
-import com.example.global.config.security.jwt.dotenv.JwtProperties
-import io.jsonwebtoken.*
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -20,6 +21,7 @@ class GenerateJwtAdapter(
         generateToken(accountId),
         generateRefreshToken(accountId)
     )
+
 
     private fun generateRefreshToken(accountId: String): String {
 

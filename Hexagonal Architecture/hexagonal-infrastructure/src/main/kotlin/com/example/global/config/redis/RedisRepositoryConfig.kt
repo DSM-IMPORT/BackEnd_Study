@@ -1,6 +1,6 @@
 package com.example.global.config.redis
 
-import com.example.global.config.redis.dotenv.RedisProperty
+import com.example.global.config.redis.porperty.RedisProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.connection.RedisConnectionFactory

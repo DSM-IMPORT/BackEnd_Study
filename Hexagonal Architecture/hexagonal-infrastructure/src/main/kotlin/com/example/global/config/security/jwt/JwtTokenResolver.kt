@@ -1,6 +1,6 @@
 package com.example.global.config.security.jwt
 
-import com.example.global.config.security.jwt.dotenv.JwtProperties
+import com.example.global.config.security.jwt.property.JwtProperties
 import org.springframework.stereotype.Component
 import java.util.regex.Pattern
 import javax.servlet.http.HttpServletRequest
@@ -15,13 +15,12 @@ class JwtTokenResolver(
     }
 
     fun resolveToken(httpServletRequest: HttpServletRequest) = parseToken(
-        httpServletRequest.getHeader("Authorization"),
-        httpServletRequest.getParameter("type")
+        httpServletRequest.getHeader("Authorization")
     )
 
-    fun parseToken(token: String?, type: String?): String? {
+    fun parseToken(token: String?): String? {
 
-        return if (token != null && Pattern.matches(REGEX_BEARER_TOKEN, token) && type == jwtProperties.accessTyp) {
+        return if (token != null && Pattern.matches(REGEX_BEARER_TOKEN, token)) {
             token.substring(7)
         }
         else {

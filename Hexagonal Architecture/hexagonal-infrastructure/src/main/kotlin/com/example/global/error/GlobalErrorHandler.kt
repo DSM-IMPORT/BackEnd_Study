@@ -8,7 +8,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalErrorHandler {
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException::class)
     protected fun handleBindException(e: BindException): BindErrorResponse? = ErrorResponse.of(e)
+
+    @ExceptionHandler(CustomException::class)
+    protected fun customExceptionHandle(e: CustomException) = ErrorResponse(
+        e.errorProperty.status(),
+        e.errorProperty.message()
+    )
+
 }
