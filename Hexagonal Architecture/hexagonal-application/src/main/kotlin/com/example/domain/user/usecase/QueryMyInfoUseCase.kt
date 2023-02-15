@@ -27,9 +27,9 @@ class QueryMyInfoUseCase(
             }
 
         return QueryUserMyInfoResponse(
-            accountId = user.accountId,
-            name = user.name,
-            age = user.age,
+            user.accountId,
+            user.name,
+            user.age,
             feeds
         )
     }
