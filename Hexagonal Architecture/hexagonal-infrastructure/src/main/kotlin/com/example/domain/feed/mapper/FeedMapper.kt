@@ -2,8 +2,6 @@ package com.example.domain.feed.mapper
 
 import com.example.domain.feed.entity.FeedJpaEntity
 import com.example.domain.feed.model.Feed
-import com.example.domain.user.entity.UserJpaEntity
-import com.example.domain.user.model.User
 import com.example.domain.user.repository.UserJpaRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component

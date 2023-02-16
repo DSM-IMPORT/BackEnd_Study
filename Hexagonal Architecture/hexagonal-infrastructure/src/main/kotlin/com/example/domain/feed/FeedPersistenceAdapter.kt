@@ -4,6 +4,8 @@ import com.example.domain.feed.mapper.FeedMapper
 import com.example.domain.feed.model.Feed
 import com.example.domain.feed.repository.FeedJpaRepository
 import com.example.domain.feed.spi.FeedPort
+import com.example.domain.user.exception.DuplicatedMemberException
+import com.example.domain.user.model.User
 import org.springframework.stereotype.Component
 
 @Component
@@ -17,5 +19,12 @@ class FeedPersistenceAdapter(
             .map {
                 feedMapper.toDomain(it)!!
             }
+    }
+
+    override fun saveFeed(feed: Feed) {
+
+        feedJpaRepository.save(
+            feedMapper.toEntity(feed)
+        )
     }
 }
