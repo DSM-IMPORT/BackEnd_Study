@@ -12,7 +12,7 @@ class CreateFeedUseccase(
     private val userSecurityPort: UserSecurityPort
 ) {
     fun excute(createFeedRequest: CreateFeedRequest) {
-        val userId = userSecurityPort.getCurrentUserId().toLong()
+        val userId = userSecurityPort.getCurrentUserId()
 
         val feed = Feed(
             id = null,
