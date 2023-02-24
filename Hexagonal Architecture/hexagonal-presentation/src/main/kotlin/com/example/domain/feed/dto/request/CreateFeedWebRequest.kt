@@ -9,6 +9,6 @@ data class CreateFeedWebRequest(
     val title: String,
 
     @field:NotBlank
-    @field : Size(max = 2000)
+    @field:Size(max = 2000)
     val content: String
 )
