@@ -7,5 +7,5 @@ data class Feed(
     val id: Long?,
     val title: String,
     val content: String,
-    val userId: String
+    val userId: Long
 )
